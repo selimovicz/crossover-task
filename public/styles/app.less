@@ -1,0 +1,184 @@
+// Bootstrap
+@import "bower_components/bootstrap/less/bootstrap.less";
+// Animate
+@import (less) "bower_components/animate.css/animate.css";
+// Components: Font Awesome
+@import (less) "bower_components/font-awesome/less/font-awesome.less";
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+#locations {
+    padding-top: 80px;
+    .selected {
+        font-weight: bold;
+    }
+}
+
+.navbar {
+    border: none;
+    font-size: 12px;
+    height: 30px;
+    &-default {
+        border-bottom: 3px solid #03BDED;
+        .navbar-nav {
+            & > li> a {
+                color: #dfdfdf;
+                font-weight: 400;
+                &:hover{
+                    color: #fff;
+                }
+            }
+        }
+        background-color: #4E5D6C;
+        color: #fff;
+    }
+    h4{
+        margin: 14px 17px;
+        font-weight: 300;
+    }
+}
+
+.items{
+    margin: 100px;
+    h4{
+        font-size: 14px;
+    }
+    .center{
+        text-align: center;
+    }
+    .item{
+        background: rgba(236, 236, 236, 0.38);
+        margin: 10px;
+        padding: 10px 10px 5px;
+        cursor: pointer;
+        .progress{
+            margin-bottom: 0px;
+            border-radius: 2px;
+        }
+        &.rejected{
+            &, .detail-card{
+                border: 1px solid #d9534f;
+            }
+            p, i, h5, h1{
+                .text-danger;
+            }
+        }
+        &.approved{
+            &, .detail-card{
+                border: 1px solid #4cae4c;
+            }
+            p, i, h5, h1{
+                .text-success;
+            }
+        }
+        &.running{
+            &, .detail-card{
+                border: 1px solid #2e6da4;
+            }
+            p, i, h5, h1{
+                .text-primary;
+            }
+        }
+        &.warning{
+            &, .detail-card{
+                border: 1px solid #f0ad4e;
+            }
+            p, i, h5, h1{
+                .text-warning;
+            }
+        }
+        i{
+            font-size: 22px;
+        }
+        .expanded-card{
+            margin: 20px 0px 10px;
+            cursor: default;
+            .detail-card{
+                min-height: 200px;
+                padding: 6px 12px;
+                opacity: 0.8;
+                cursor: pointer;
+                -webkit-box-shadow: 1px 0px 23px -6px rgba(0,0,0,0.75);
+                -moz-box-shadow: 1px 0px 23px -6px rgba(0,0,0,0.75);
+                box-shadow: 1px 0px 23px -6px rgba(0,0,0,0.75);
+                h5{
+                    margin-bottom: 0px;
+                }
+                &.metrics{
+                    .arrow{
+                        margin-top: 23px;
+                        text-align: center;
+                        .desc{
+                            font-size: 12px;
+                        }
+                        p{
+                            color: #000;
+                        }
+                        .success{ color: #4cae4c; }
+                        .danger{ color: #d9534f; }
+                        .warning{ color: #f0ad4e; }
+                    }
+                }
+                &.build{
+                    .content{
+                        margin-top: 20px;
+                        text-align: center;
+                        p, i{
+                            color: #2e6da4;
+                        }
+                        i{
+                            font-size: 64px;
+                            display: block;
+                        }
+                    }
+                    .time{
+                        margin-top: 10px;
+                        text-align: center;
+                        p{
+                            color: #000;
+                        }
+                    }
+                }
+                &.unit-test, &.fun-test{
+                    h5{
+                        margin-bottom: 18px;
+                    }
+                    .right{
+                        .text-center;
+                        padding-left: 0px;
+                        h3{
+                            margin-top: 6px;
+                        }
+                    }
+                    .bar{
+                        margin-top: 15px;
+                        text-align: center;
+                        p{
+                            font-size: 12px;
+                            margin-top: 4px;
+                        }
+                    }
+                }
+                &:hover{
+                    opacity: 1;
+                }
+            }
+            .results{
+                text-align: center;
+                .message{
+                    margin-top: 30px;
+                    h1{
+                        margin-top: 0px;
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+        .progress-bar { 
+          transition: width 1s ease-in-out; 
+        }
+    }
+}
