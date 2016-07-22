@@ -31335,7 +31335,8 @@ var App = angular.module('App', [
         'chart.js'
     ])
     .constant('conf', {
-        fetchDataUrl: '/location'
+        itemsPath: '/items',
+        singleItemPath: /item/,
     });
 /*global App: true, angular:true */
 App.controller('MasterController', [
@@ -31343,16 +31344,21 @@ App.controller('MasterController', [
     '$log',
     '$rootScope',
     '$stateParams',
+    'getItems',
     'ItemsService',
-    function($scope, $log, $rootScope, $stateParams, ItemsService) {
+    function($scope, $log, $rootScope, $stateParams, getItems, ItemsService) {
         'use strict';
-        	
+        
+        $scope.items = getItems;
 
         $scope.currentTime = new Date();
 
+        $scope.expandItem = function(id){
 
-
-        $scope.expandItem = function(){
+        	var id = 1;
+        	ItemsService.getSingleItem(id).then(function(response){
+        		console.log(response);
+        	});
 	      	if(!$scope.disableExpand){
 	        	$scope.$emit('collapseAllItems'); // emiting upward that all other items shall be collapsed
 	        	$scope.expandedItem = !$scope.expandedItem;
@@ -31391,12 +31397,12 @@ App
                 .state('location', {
                     url: '/',
                     templateUrl: 'js/views/initial_screen.html',
-                    controller: 'MasterController'
-                    // resolve: {
-                    //     getLocations: function(LocationService) {
-                    //         return LocationService.getLocations();
-                    //     }
-                    // }
+                    controller: 'MasterController',
+                    resolve: {
+                        getItems: function(ItemsService) {
+                            return ItemsService.getItems();
+                        }
+                    }
                 });
         }
     ]);
@@ -31406,15 +31412,21 @@ App.service('ItemsService', ['$http', '$q', '$location', 'conf', function($http,
 
     var items = {};
 
-    // locations.getLocations = function(location_id) {
-    //     if(!location_id) location_id = '';
-    //     return $http.get(conf.locationsPath + '/' + location_id)
-    //         .success(function(response) {
-    //             return response.data;
-    //         }, function(response) {
-    //             return response.status;
-    //         });
-    // };
+    items.getItems = function() {
+        return $http.get(conf.itemsPath).success(function(response) {
+            return response.data;
+        }, function(response) {
+            return response.status;
+        });
+    };
+
+    items.getSingleItem = function(id) {
+        return $http.get(conf.singleItemPath + id).success(function(response) {
+            return response.data;
+        }, function(response) {
+            return response.status;
+        });
+    };
 
     return items;
 }]);

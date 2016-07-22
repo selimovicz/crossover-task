@@ -5,5 +5,6 @@ var App = angular.module('App', [
         'chart.js'
     ])
     .constant('conf', {
-        fetchDataUrl: '/location'
+        itemsPath: '/items',
+        singleItemPath: /item/,
     });

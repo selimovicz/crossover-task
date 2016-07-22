@@ -11,12 +11,12 @@ App
                 .state('location', {
                     url: '/',
                     templateUrl: 'js/views/initial_screen.html',
-                    controller: 'MasterController'
-                    // resolve: {
-                    //     getLocations: function(LocationService) {
-                    //         return LocationService.getLocations();
-                    //     }
-                    // }
+                    controller: 'MasterController',
+                    resolve: {
+                        getItems: function(ItemsService) {
+                            return ItemsService.getItems();
+                        }
+                    }
                 });
         }
     ]);

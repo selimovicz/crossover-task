@@ -4,16 +4,21 @@ App.controller('MasterController', [
     '$log',
     '$rootScope',
     '$stateParams',
+    'getItems',
     'ItemsService',
-    function($scope, $log, $rootScope, $stateParams, ItemsService) {
+    function($scope, $log, $rootScope, $stateParams, getItems, ItemsService) {
         'use strict';
-        	
+        
+        $scope.items = getItems;
 
         $scope.currentTime = new Date();
 
+        $scope.expandItem = function(id){
 
-
-        $scope.expandItem = function(){
+        	var id = 1;
+        	ItemsService.getSingleItem(id).then(function(response){
+        		console.log(response);
+        	});
 	      	if(!$scope.disableExpand){
 	        	$scope.$emit('collapseAllItems'); // emiting upward that all other items shall be collapsed
 	        	$scope.expandedItem = !$scope.expandedItem;

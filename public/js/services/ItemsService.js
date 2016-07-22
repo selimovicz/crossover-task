@@ -4,15 +4,21 @@ App.service('ItemsService', ['$http', '$q', '$location', 'conf', function($http,
 
     var items = {};
 
-    // locations.getLocations = function(location_id) {
-    //     if(!location_id) location_id = '';
-    //     return $http.get(conf.locationsPath + '/' + location_id)
-    //         .success(function(response) {
-    //             return response.data;
-    //         }, function(response) {
-    //             return response.status;
-    //         });
-    // };
+    items.getItems = function() {
+        return $http.get(conf.itemsPath).success(function(response) {
+            return response.data;
+        }, function(response) {
+            return response.status;
+        });
+    };
+
+    items.getSingleItem = function(id) {
+        return $http.get(conf.singleItemPath + id).success(function(response) {
+            return response.data;
+        }, function(response) {
+            return response.status;
+        });
+    };
 
     return items;
 }]);
