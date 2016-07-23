@@ -20,16 +20,16 @@ module.exports = function(grunt) {
                     'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
                     'node_modules/chart.js/dist/Chart.min.js',
                     'node_modules/angular-chart.js/dist/angular-chart.min.js',
-                    'public/js/**/*.js' 
+                    'public/js/**/*.js'
                 ],
                 dest: 'public/build/js/app.js'
             }
         },
 
         uglify: {
-            options: { 
+            options: {
                 banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
-            }, 
+            },
             build: {
                 files: {
                     'public/build/js/app.min.js': 'public/build/js/app.js'

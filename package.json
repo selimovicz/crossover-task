@@ -6,13 +6,18 @@
     "url": "https://github.com/selimovicz/crossover-task"
   },
   "scripts": {
-    "start": "grunt"
+    "start": "grunt",
+    "test": "karma start karma.conf.js"
   },
   "dependencies": {
     "angular-chart.js": "^1.0.0",
     "body-parser": "~1.5.2",
     "chart.js": "^2.2.0-rc.2",
     "express": "~4.5.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.1.1",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-jasmine": "^1.0.2",
     "method-override": "~2.1.2",
     "mongoose": "~3.6.2",
     "morgan": "~1.2.2"
