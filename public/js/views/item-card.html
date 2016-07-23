@@ -130,16 +130,28 @@
 
         <div class="message warning">
             <h5>{{item.firstMessage}}</h5>
-            <h1>{{item.secondMessage}}</h1>
-            <div ng-if="item.status == 'completed'" class="completed">
+            <h2>{{item.secondMessage}}</h2>
+            <div ng-if="item.status == 'completed'" class="status">
                 <br/>
                 <div>
-                    <p class="pull-left"><button class="btn btn-primary" ng-click="deployToProduction()" ng-disabled="deployingToProduction">{{ deployingToProduction ? 'Deploying ...' : 'Deploy'}}</button> <span>to : </span></p>
+                    <p class="pull-left"><button class="btn btn-primary" ng-click="doAction(item)" ng-disabled="item.doingAction">{{ item.doingAction ? 'Deploying ...' : 'Deploy'}}</button> <span>to : </span></p>
                     <select class="form-control pull-left">
                         <option>Production</option>
                         <option>Staging</option>
                         <option>Demo</option>
                     </select>
+                </div>
+            </div>
+            <div ng-if="item.status == 'approved' || item.status == 'succeeded'" class="status">
+                <br/>
+                <div>
+                    <button class="btn btn-primary" ng-click="doAction(item)" ng-disabled="item.doingAction"><i class="fa fa-search" aria-hidden="true"></i> {{ item.doingAction ? 'Merging ...' : 'Merged build'}}</button>
+                </div>
+            </div>
+            <div ng-if="item.status == 'rejected' || item.status == 'failed'" class="status">
+                <br/>
+                <div>
+                    <button class="btn btn-primary" ng-click="doAction(item)" ng-disabled="item.doingAction"><i class="fa fa-search" aria-hidden="true"></i> {{ item.doingAction ? 'Finding ...' : 'Find Issues'}}</button>
                 </div>
             </div>
         </div>

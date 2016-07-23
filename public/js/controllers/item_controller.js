@@ -65,9 +65,9 @@ App.controller('ItemController', [
             return item.status;
         };
 
-        // mimicking deploy to production
-        $scope.deployToProduction = function(){
-        	$scope.deployingToProduction = true;
+        // mimicking actions uppon success, fail, complete state
+        $scope.doAction = function(item){
+        	item.doingAction = true;
         }
 
         $scope.$on('doCollapseAllItems', function(c){

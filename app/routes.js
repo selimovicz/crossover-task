@@ -255,7 +255,55 @@ module.exports = function(app) {
 				codeCovered: 65
 			},
 			secondMessage: 'Completed'
-		}
+		},
+		'9a2e054c703130a20cdb51f75a5b6409a63606311' : {
+			name: '536462',
+			ownerName: 'Selimovic',
+			type: 'firewall',
+			time: currentTime.setMinutes(currentTime.getMinutes() - 20),
+			metrics: {
+				status: 'passed',
+				overall: 100,
+				test: {
+					status: 'passed',
+					value: 65
+				},
+				maintainability: {
+					status: 'passed',
+					value: 81
+				},
+				security: {
+					status: 'waiting',
+					value: 43
+				},
+				workmanship: {
+					status: 'waiting',
+					value: 76
+				}
+			},
+			build: {
+				status: 'passed',
+				overall: 100
+			},
+			unit: {
+				status: 'passed',
+				overall: 100,
+				testPassed: 100,
+				testFailed: 40,
+				codeCovered: 65
+
+			},
+			functional: {
+				status: 'passed',
+				overall: 100,
+				testPassed: 120,
+				testFailed: 10,
+				codeCovered: 45
+			},
+			firstMessage: 'Change Accepted',
+			secondMessage: 'Auto-Merged'
+		},
+
 	};
 
 	// get all items
