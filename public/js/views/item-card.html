@@ -1,0 +1,131 @@
+<div class="item-card row" ng-click="expandItem(item)" ng-init="item.status = getItemStatus(item)">
+    <div class="col-md-2 center">
+        <i class="fa pull-left" ng-class="{'fa-building-o' : item.type == 'firewall', 'fa-laptop' : item.type == 'build'}" aria-hidden="true"></i><p class="pull-left">{{item.name}}</p>
+    </div>
+    <div class="col-md-2 center">
+        <p>{{ item.ownerName }}</p>
+    </div>
+    <div class="col-md-2 center">
+        <p ng-if="item.status !== 'pending'">{{ item.time | date:'HH:mm - dd/MM/yyyy'}}</p>
+    </div>
+    <div class="col-md-1 col-md-offset-1 center"><p>{{item.status | capitalize}}</p></div>
+    <div class="col-md-1 center"><uib-progressbar value="item.metrics.overall" type="{{progressBarColor(item)}}"></uib-progressbar></div>
+    <div class="col-md-1 center"><uib-progressbar value="item.build.overall" type="{{progressBarColor(item)}}"></uib-progressbar></div>
+    <div class="col-md-1 center"><uib-progressbar value="item.unit.overall" type="{{progressBarColor(item)}}"></uib-progressbar></div>
+    <div class="col-md-1 center"><uib-progressbar value="item.functional.overall" type="{{progressBarColor(item)}}"></uib-progressbar></div>
+
+</div>
+
+<div class="expanded-card row" ng-if="item.expandedItem" ng-class="{'slide' : item.expandedItem}">
+    <div class="col-md-2">
+        <div class="detail-card metrics" ng-class="{
+                'pending' : item.metrics.status == 'pending',
+                'running' : item.metrics.status == 'running',
+                'approved' : item.metrics.status == 'passed',
+                'rejected' : item.metrics.status == 'rejected'}">
+            <h5>Metrics</h5>
+
+            <div class="row">
+                <div class="col-md-6 arrow">
+                    <p><i class="fa pull-left" aria-hidden="true" ng-class="{'fa-arrow-up success' : item.metrics.test.status == 'passed', 'fa-arrow-down danger' : item.metrics.test.status == 'failed', 'fa-arrow-right warning' : item.metrics.test.status == 'waiting'}"></i><span>{{item.metrics.test.value}}</span></p>
+                    <span class="desc">Test</span>
+                </div>
+                <div class="col-md-6 arrow">
+                    <p><i class="fa pull-left" aria-hidden="true"  ng-class="{'fa-arrow-up success' : item.metrics.maintainability.status == 'passed', 'fa-arrow-down danger' : item.metrics.maintainability.status == 'failed', 'fa-arrow-right warning' : item.metrics.maintainability.status == 'waiting'}"></i><span>{{item.metrics.maintainability.value}}</span></p>
+                    <span class="desc">Maintainability</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 arrow">
+                    <p><i class="fa pull-left" ng-class="{'fa-arrow-up success' : item.metrics.security.status == 'passed', 'fa-arrow-down danger' : item.metrics.security.status == 'failed', 'fa-arrow-right warning' : item.metrics.security.status == 'waiting'}" aria-hidden="true"></i><span>{{item.metrics.security.value}}</span></p>
+                    <span class="desc">Security</span>
+                </div>
+                <div class="col-md-6 arrow">
+                    <p><i class="fa pull-left"  ng-class="{'fa-arrow-up success' : item.metrics.workmanship.status == 'passed', 'fa-arrow-down danger' : item.metrics.workmanship.status == 'failed', 'fa-arrow-right warning' : item.metrics.workmanship.status == 'waiting'}" aria-hidden="true"></i><span>{{item.metrics.workmanship.value}}</span></p>
+                    <span class="desc">Workmanship</span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="detail-card build">
+            <h5>Build</h5>
+
+            <div class="row">
+                <div class="col-md-6 content">
+                    <i class="fa fa-laptop" aria-hidden="true"></i>
+                    <p>Debug</p>
+                </div>
+                <div class="col-md-6 content">
+                    <i class="fa fa-laptop" aria-hidden="true"></i>
+                    <p>Release</p>
+                </div>
+                <div class="col-md-12 time">
+                    <h6>{{ item.time | date:'HH:mm - dd/MM/yyyy'}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="detail-card unit-test">
+            <h5>Unit Test</h5>
+            <div ng-if="item.unit.status == 'running'" class="running">
+                <i class="fa fa-spin fa-circle-o-notch fa-3" aria-hidden="true"></i>
+                <p>Ongoing Unit Test</p>
+            </div>
+            <div ng-if="item.unit.status !== 'running'">
+                <div class="col-md-8 left" >
+                    <canvas id="pie" class="chart chart-pie" height="100" width="100" chart-colors="item.unitPiechart.colors"
+                      chart-data="item.unitPiechart.data" chart-labels="item.unitPiechart.labels" chart-options="item.unitPiechart.options">
+                    </canvas> 
+                </div>
+                <div class="col-md-4 right">
+                    <h3>{{item.unit.testPercentage}}%</h3>
+                    <span>Test passed</span>
+                </div>
+                <div class="col-md-12 bar">
+                    <uib-progressbar value="item.unit.codeCovered" type="success"></uib-progressbar>
+                    <p>{{item.unit.codeCovered}}% - code covered</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="detail-card fun-test">
+            <h5>Functional Test</h5>
+            <div ng-if="item.functional.status == 'running'" class="running">
+                <i class="fa fa-spin fa-circle-o-notch fa-3" aria-hidden="true"></i>
+                <p>Ongoing Functional Test</p>
+            </div>
+            <div ng-if="item.functional.status !== 'running'">
+                <div class="col-md-8 left">
+                    <canvas id="pie" class="chart chart-pie" height="100" width="100" chart-colors="item.funPiechart.colors"
+                      chart-data="item.funPiechart.data" chart-labels="item.funPiechart.labels" chart-options="item.funPiechart.options">
+                    </canvas> 
+                </div>
+                <div class="col-md-4 right">
+                    <h3>{{item.functional.testPercentage}}%</h3>
+                    <span>Test passed</span>
+                </div>
+                <div class="col-md-12 bar">
+                    <uib-progressbar value="item.functional.codeCovered" type="success"></uib-progressbar>
+                    <p>{{item.functional.codeCovered}}% - code covered</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 results">
+        <h3>Results:</h3>
+
+        <div class="message warning">
+            <h5>{{item.firstMessage}}</h5>
+            <h1>{{item.secondMessage}}</h1>
+            <div ng-if="item.status == 'completed'">
+                <button class="btn btn-primary">Deploy</button>
+            </div>
+        </div>
+    </div>
+</div>

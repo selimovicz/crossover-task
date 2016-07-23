@@ -31336,8 +31336,79 @@ var App = angular.module('App', [
     ])
     .constant('conf', {
         itemsPath: '/items',
-        singleItemPath: /item/,
+        singleItemPath: /item/
     });
+/*global App: true, angular:true */
+App.controller('ItemController', [
+    '$scope',
+    '$log',
+    '$timeout',
+    'ItemsService',
+    function($scope, $log, $timeout, ItemsService) {
+        'use strict';
+
+        $scope.expandItem = function(item){
+
+        	var id = '3a4e094c703130a20cdb51f3a5b6409a63607254';
+        	if(item.status != 'pending'){
+	        	ItemsService.getSingleItem(id).then(function(response){
+
+		        	$scope.$emit('collapseAllItems'); // emiting upward that all other items shall be collapsed
+		        	$scope.item.expandedItem = !$scope.item.expandedItem;
+
+					$scope.item.unitPiechart = {
+						labels: ["Failed", "Passed"],
+						data: [item.unit.testFailed, item.unit.testPassed],
+						colors: ['#f0ad4e', '#4cae4c']
+					};
+					$scope.item.unit.testPercentage = Math.round((item.unit.testPassed/(item.unit.testPassed + item.unit.testFailed))*100);
+					console.log($scope.item.unit.testPercentage);
+					$scope.item.funPiechart = {
+						labels: ["Failed", "Passed"],
+						data: [item.functional.testFailed, item.functional.testPassed],
+						colors: ['#f0ad4e', '#4cae4c']
+					};
+					$scope.item.functional.testPercentage = Math.round((item.functional.testPassed/(item.functional.testPassed + item.functional.testFailed))*100);
+		      	});
+	      	}
+        };
+
+
+        $scope.progressBarColor = function(item){
+        	if(item.status == 'running'){
+        		return 'primary';
+        	}else if(item.status == 'rejected'){
+        		return 'danger';
+        	}else{
+        		return 'success';
+        	}
+        };
+
+        $scope.getItemStatus = function(item){
+        	if(!item.status){
+	            if(item.metrics.status == 'passed' && item.build.status == 'passed' && item.unit.status == 'passed' && item.functional.status == 'passed'){
+	                if(item.completed){
+	                    return 'completed';
+	                }else{
+	                    return 'approved';
+	                }
+	            }else{
+	                return 'rejected';
+	            }
+	        }
+            return item.status;
+        };
+
+        $scope.$on('doCollapseAllItems', function(c){
+			if($scope.item.expandedItem){
+				$timeout(function(){
+					$scope.item.expandedItem = false;
+				});
+			}
+	    });
+
+    }
+]);
 /*global App: true, angular:true */
 App.controller('MasterController', [
     '$scope',
@@ -31349,41 +31420,31 @@ App.controller('MasterController', [
     function($scope, $log, $rootScope, $stateParams, getItems, ItemsService) {
         'use strict';
         
-        $scope.items = getItems;
+        $scope.items = getItems.data;
 
-        $scope.currentTime = new Date();
-
-        $scope.expandItem = function(id){
-
-        	var id = 1;
-        	ItemsService.getSingleItem(id).then(function(response){
-        		console.log(response);
-        	});
-	      	if(!$scope.disableExpand){
-	        	$scope.$emit('collapseAllItems'); // emiting upward that all other items shall be collapsed
-	        	$scope.expandedItem = !$scope.expandedItem;
-
-				$scope.unitPiechart = {
-					labels: ["Passed", "Failed"],
-					data: [750, 250],
-					colors: ['#4cae4c', '#f0ad4e']
-				};
-
-				$scope.funPiechart = {
-					labels: ["Passed", "Failed"],
-					data: [200, 200],
-					colors: ['#4cae4c', '#f0ad4e']
-				};
-
-				$scope.item = {};
-
-				$scope.item.firstMessage = 'Change Accepted';
-				$scope.item.secondMessage = 'Auto-Merged';
-	      	}
-       };
+        $scope.$on("collapseAllItems", () => $scope.$broadcast("doCollapseAllItems") );
     }
 ]);
+App
+.directive('itemCard', function($log, $timeout){
+  return {
+    restrict: 'A',
+    templateUrl: 'js/views/item-card.html',
+    scope: {
+      item: '=',
+    },
+    controller: 'ItemController',
+    link: function(scope, element){
+      
+    }
+  };
+});
 
+App.filter('capitalize', function() {
+    return function(input) {
+      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+    }
+});
 /*global App: true, angular:true */
 App
     .config([

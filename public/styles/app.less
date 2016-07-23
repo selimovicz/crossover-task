@@ -54,9 +54,21 @@ body {
         margin: 10px;
         padding: 10px 10px 5px;
         cursor: pointer;
+        button{
+            padding: 7px 21px;
+        }
         .progress{
             margin-bottom: 0px;
             border-radius: 2px;
+        }
+        &.pending{
+            cursor: default;
+            &, .detail-card{
+                border: 1px solid #ccc;
+            }
+            p, i, h5, h1{
+                color: #ccc;
+            }
         }
         &.rejected{
             &, .detail-card{
@@ -96,6 +108,14 @@ body {
         .expanded-card{
             margin: 20px 0px 10px;
             cursor: default;
+            height: 20px;
+            &.slide{
+                height: 220px;
+                overflow-y: hidden;
+                transition-property: all;
+                transition-duration: .9s;
+                transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+            }
             .detail-card{
                 min-height: 200px;
                 padding: 6px 12px;
@@ -159,6 +179,14 @@ body {
                         p{
                             font-size: 12px;
                             margin-top: 4px;
+                        }
+                    }
+                    .running{
+                        text-align: center;
+                        i{
+                            display: block;
+                            font-size: 26px;
+                            margin: 40px 0px 20px;
                         }
                     }
                 }

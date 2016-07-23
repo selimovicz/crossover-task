@@ -11350,9 +11350,25 @@ body {
   padding: 10px 10px 5px;
   cursor: pointer;
 }
+.items .item button {
+  padding: 7px 21px;
+}
 .items .item .progress {
   margin-bottom: 0px;
   border-radius: 2px;
+}
+.items .item.pending {
+  cursor: default;
+}
+.items .item.pending,
+.items .item.pending .detail-card {
+  border: 1px solid #ccc;
+}
+.items .item.pending p,
+.items .item.pending i,
+.items .item.pending h5,
+.items .item.pending h1 {
+  color: #ccc;
 }
 .items .item.rejected,
 .items .item.rejected .detail-card {
@@ -11440,6 +11456,14 @@ a.items .item.warning h1:focus {
 .items .item .expanded-card {
   margin: 20px 0px 10px;
   cursor: default;
+  height: 20px;
+}
+.items .item .expanded-card.slide {
+  height: 220px;
+  overflow-y: hidden;
+  transition-property: all;
+  transition-duration: .9s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 .items .item .expanded-card .detail-card {
   min-height: 200px;
@@ -11513,6 +11537,16 @@ a.items .item.warning h1:focus {
 .items .item .expanded-card .detail-card.fun-test .bar p {
   font-size: 12px;
   margin-top: 4px;
+}
+.items .item .expanded-card .detail-card.unit-test .running,
+.items .item .expanded-card .detail-card.fun-test .running {
+  text-align: center;
+}
+.items .item .expanded-card .detail-card.unit-test .running i,
+.items .item .expanded-card .detail-card.fun-test .running i {
+  display: block;
+  font-size: 26px;
+  margin: 40px 0px 20px;
 }
 .items .item .expanded-card .detail-card:hover {
   opacity: 1;

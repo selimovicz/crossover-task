@@ -6,5 +6,5 @@ var App = angular.module('App', [
     ])
     .constant('conf', {
         itemsPath: '/items',
-        singleItemPath: /item/,
+        singleItemPath: /item/
     });
