@@ -20,12 +20,12 @@
 
             </div>
 
-            <div class="row item" ng-repeat="item in items | orderBy: 'time'" ng-class="{
+            <div class="row item animated fadeInUp" ng-repeat="(id, item) in items | orderBy: 'time'" ng-class="{
                 'pending' : item.status == 'pending',
                 'running' : item.status == 'running',
                 'approved' : item.status == 'approved' || item.status == 'completed',
                 'rejected' : item.status == 'rejected'}">
-                <div item-card item="item"></div>
+                <div item-card item="item" item-id="id"></div>
             </div>
 
         </div>

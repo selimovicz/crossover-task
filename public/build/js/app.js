@@ -31349,28 +31349,26 @@ App.controller('ItemController', [
 
         $scope.expandItem = function(item){
 
-        	var id = '3a4e094c703130a20cdb51f3a5b6409a63607254';
-        	if(item.status != 'pending'){
-	        	ItemsService.getSingleItem(id).then(function(response){
+        	ItemsService.getSingleItem($scope.itemId).then(function(response){
 
-		        	$scope.$emit('collapseAllItems'); // emiting upward that all other items shall be collapsed
-		        	$scope.item.expandedItem = !$scope.item.expandedItem;
+	        	$scope.$emit('collapseAllItems'); // emiting upward that all other items shall be collapsed
+	        	if(item.status != 'pending'){ $scope.item.expandedItem = !$scope.item.expandedItem; }
 
-					$scope.item.unitPiechart = {
-						labels: ["Failed", "Passed"],
-						data: [item.unit.testFailed, item.unit.testPassed],
-						colors: ['#f0ad4e', '#4cae4c']
-					};
-					$scope.item.unit.testPercentage = Math.round((item.unit.testPassed/(item.unit.testPassed + item.unit.testFailed))*100);
-					
-					$scope.item.funPiechart = {
-						labels: ["Failed", "Passed"],
-						data: [item.functional.testFailed, item.functional.testPassed],
-						colors: ['#f0ad4e', '#4cae4c']
-					};
-					$scope.item.functional.testPercentage = Math.round((item.functional.testPassed/(item.functional.testPassed + item.functional.testFailed))*100);
-		      	});
-	      	}
+				$scope.item.unitPiechart = {
+					labels: ["Failed", "Passed"],
+					data: [item.unit.testFailed, item.unit.testPassed],
+					colors: ['#f0ad4e', '#4cae4c']
+				};
+				$scope.item.unit.testPercentage = Math.round((item.unit.testPassed/(item.unit.testPassed + item.unit.testFailed))*100);
+				
+				$scope.item.funPiechart = {
+					labels: ["Failed", "Passed"],
+					data: [item.functional.testFailed, item.functional.testPassed],
+					colors: ['#f0ad4e', '#4cae4c']
+				};
+				$scope.item.functional.testPercentage = Math.round((item.functional.testPassed/(item.functional.testPassed + item.functional.testFailed))*100);
+	      	});
+	      	
         };
 
 
@@ -31437,6 +31435,7 @@ App
     templateUrl: 'js/views/item-card.html',
     scope: {
       item: '=',
+      itemId: '='
     },
     controller: 'ItemController',
     link: function(scope, element){

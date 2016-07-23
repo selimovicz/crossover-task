@@ -11508,13 +11508,13 @@ a.items .detail-card.warning h1:focus {
 .items .item .expanded-card {
   margin: 20px 0px 10px;
   cursor: default;
-  height: 20px;
+  height: 0px;
 }
 .items .item .expanded-card.slide {
   height: 220px;
   overflow-y: hidden;
   transition-property: all;
-  transition-duration: .9s;
+  transition-duration: 1s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 .items .item .expanded-card .detail-card {

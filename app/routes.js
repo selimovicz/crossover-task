@@ -69,7 +69,7 @@ module.exports = function(app) {
 
 		},
 		'3a2e054c703130a20cdb51f75a5b6409a63606311' : {
-			name: '432462',
+			name: '136462',
 			ownerName: 'Selimovic',
 			type: 'firewall',
 			time: currentTime.setMinutes(currentTime.getMinutes() - 20),
@@ -149,7 +149,7 @@ module.exports = function(app) {
 				overall: 10,
 				testPassed: 10,
 				testFailed: 300,
-				codeCovered: 65
+				codeCovered: 15
 
 			},
 			functional: {

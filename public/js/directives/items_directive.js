@@ -5,6 +5,7 @@ App
     templateUrl: 'js/views/item-card.html',
     scope: {
       item: '=',
+      itemId: '='
     },
     controller: 'ItemController',
     link: function(scope, element){
