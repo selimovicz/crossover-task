@@ -22,7 +22,7 @@ App.controller('ItemController', [
 						colors: ['#f0ad4e', '#4cae4c']
 					};
 					$scope.item.unit.testPercentage = Math.round((item.unit.testPassed/(item.unit.testPassed + item.unit.testFailed))*100);
-					console.log($scope.item.unit.testPercentage);
+					
 					$scope.item.funPiechart = {
 						labels: ["Failed", "Passed"],
 						data: [item.functional.testFailed, item.functional.testPassed],
@@ -37,7 +37,7 @@ App.controller('ItemController', [
         $scope.progressBarColor = function(item){
         	if(item.status == 'running'){
         		return 'primary';
-        	}else if(item.status == 'rejected'){
+        	}else if(item.status == 'failed'){
         		return 'danger';
         	}else{
         		return 'success';
@@ -58,6 +58,11 @@ App.controller('ItemController', [
 	        }
             return item.status;
         };
+
+        // mimicking deploy to production
+        $scope.deployToProduction = function(){
+        	$scope.deployingToProduction = true;
+        }
 
         $scope.$on('doCollapseAllItems', function(c){
 			if($scope.item.expandedItem){

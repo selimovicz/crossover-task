@@ -9,20 +9,19 @@
         <p ng-if="item.status !== 'pending'">{{ item.time | date:'HH:mm - dd/MM/yyyy'}}</p>
     </div>
     <div class="col-md-1 col-md-offset-1 center"><p>{{item.status | capitalize}}</p></div>
-    <div class="col-md-1 center"><uib-progressbar value="item.metrics.overall" type="{{progressBarColor(item)}}"></uib-progressbar></div>
-    <div class="col-md-1 center"><uib-progressbar value="item.build.overall" type="{{progressBarColor(item)}}"></uib-progressbar></div>
-    <div class="col-md-1 center"><uib-progressbar value="item.unit.overall" type="{{progressBarColor(item)}}"></uib-progressbar></div>
-    <div class="col-md-1 center"><uib-progressbar value="item.functional.overall" type="{{progressBarColor(item)}}"></uib-progressbar></div>
+    <div class="col-md-1 center"><uib-progressbar value="item.metrics.overall" type="{{progressBarColor(item.metrics)}}"></uib-progressbar></div>
+    <div class="col-md-1 center"><uib-progressbar value="item.build.overall" type="{{progressBarColor(item.build)}}"></uib-progressbar></div>
+    <div class="col-md-1 center"><uib-progressbar value="item.unit.overall" type="{{progressBarColor(item.unit)}}"></uib-progressbar></div>
+    <div class="col-md-1 center"><uib-progressbar value="item.functional.overall" type="{{progressBarColor(item.functional)}}"></uib-progressbar></div>
 
 </div>
 
 <div class="expanded-card row" ng-if="item.expandedItem" ng-class="{'slide' : item.expandedItem}">
     <div class="col-md-2">
         <div class="detail-card metrics" ng-class="{
-                'pending' : item.metrics.status == 'pending',
                 'running' : item.metrics.status == 'running',
                 'approved' : item.metrics.status == 'passed',
-                'rejected' : item.metrics.status == 'rejected'}">
+                'rejected' : item.metrics.status == 'failed'}">
             <h5>Metrics</h5>
 
             <div class="row">
@@ -51,7 +50,10 @@
         </div>
     </div>
     <div class="col-md-2">
-        <div class="detail-card build">
+        <div class="detail-card build"  ng-class="{
+                'running' : item.build.status == 'running',
+                'approved' : item.build.status == 'passed',
+                'rejected' : item.build.status == 'failed'}">
             <h5>Build</h5>
 
             <div class="row">
@@ -70,7 +72,10 @@
         </div>
     </div>
     <div class="col-md-2">
-        <div class="detail-card unit-test">
+        <div class="detail-card unit-test" ng-class="{
+                'running' : item.unit.status == 'running',
+                'approved' : item.unit.status == 'passed',
+                'rejected' : item.unit.status == 'failed'}">
             <h5>Unit Test</h5>
             <div ng-if="item.unit.status == 'running'" class="running">
                 <i class="fa fa-spin fa-circle-o-notch fa-3" aria-hidden="true"></i>
@@ -94,7 +99,10 @@
         </div>
     </div>
     <div class="col-md-2">
-        <div class="detail-card fun-test">
+        <div class="detail-card fun-test"  ng-class="{
+                'running' : item.functional.status == 'running',
+                'approved' : item.functional.status == 'passed',
+                'rejected' : item.functional.status == 'failed'}">
             <h5>Functional Test</h5>
             <div ng-if="item.functional.status == 'running'" class="running">
                 <i class="fa fa-spin fa-circle-o-notch fa-3" aria-hidden="true"></i>
@@ -123,8 +131,16 @@
         <div class="message warning">
             <h5>{{item.firstMessage}}</h5>
             <h1>{{item.secondMessage}}</h1>
-            <div ng-if="item.status == 'completed'">
-                <button class="btn btn-primary">Deploy</button>
+            <div ng-if="item.status == 'completed'" class="completed">
+                <br/>
+                <div>
+                    <p class="pull-left"><button class="btn btn-primary" ng-click="deployToProduction()" ng-disabled="deployingToProduction">{{ deployingToProduction ? 'Deploying ...' : 'Deploy'}}</button> <span>to : </span></p>
+                    <select class="form-control pull-left">
+                        <option>Production</option>
+                        <option>Staging</option>
+                        <option>Demo</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>

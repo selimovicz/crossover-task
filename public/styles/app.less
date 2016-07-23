@@ -49,18 +49,7 @@ body {
     .center{
         text-align: center;
     }
-    .item{
-        background: rgba(236, 236, 236, 0.38);
-        margin: 10px;
-        padding: 10px 10px 5px;
-        cursor: pointer;
-        button{
-            padding: 7px 21px;
-        }
-        .progress{
-            margin-bottom: 0px;
-            border-radius: 2px;
-        }
+    .item, .detail-card{
         &.pending{
             cursor: default;
             &, .detail-card{
@@ -71,36 +60,38 @@ body {
             }
         }
         &.rejected{
-            &, .detail-card{
-                border: 1px solid #d9534f;
-            }
+            border: 1px solid #d9534f;
             p, i, h5, h1{
                 .text-danger;
             }
         }
         &.approved{
-            &, .detail-card{
-                border: 1px solid #4cae4c;
-            }
+            border: 1px solid #4cae4c;
             p, i, h5, h1{
                 .text-success;
             }
         }
         &.running{
-            &, .detail-card{
-                border: 1px solid #2e6da4;
-            }
+            border: 1px solid #2e6da4;
             p, i, h5, h1{
                 .text-primary;
             }
         }
         &.warning{
-            &, .detail-card{
-                border: 1px solid #f0ad4e;
-            }
+            border: 1px solid #f0ad4e;
             p, i, h5, h1{
                 .text-warning;
             }
+        }
+    }
+    .item{
+        background: rgba(236, 236, 236, 0.38);
+        margin: 10px 0px;
+        padding: 10px 10px 5px;
+        cursor: pointer;
+        .progress{
+            margin-bottom: 0px;
+            border-radius: 2px;
         }
         i{
             font-size: 22px;
@@ -201,6 +192,24 @@ body {
                     h1{
                         margin-top: 0px;
                         font-weight: 300;
+                    }
+                    .completed{
+                        div{
+                            margin: 0 auto;
+                            display: inline-flex;
+                        }
+                        button{
+                            padding: 7px 21px;
+                        }
+                        p{
+                            color: #000;
+                            span{
+                                padding: 0px 20px;
+                            }
+                        }
+                        select{
+                            width: 38%;
+                        }
                     }
                 }
             }

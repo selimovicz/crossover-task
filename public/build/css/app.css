@@ -11344,111 +11344,163 @@ body {
 .items .center {
   text-align: center;
 }
+.items .item.pending,
+.items .detail-card.pending {
+  cursor: default;
+}
+.items .item.pending,
+.items .detail-card.pending,
+.items .item.pending .detail-card,
+.items .detail-card.pending .detail-card {
+  border: 1px solid #ccc;
+}
+.items .item.pending p,
+.items .detail-card.pending p,
+.items .item.pending i,
+.items .detail-card.pending i,
+.items .item.pending h5,
+.items .detail-card.pending h5,
+.items .item.pending h1,
+.items .detail-card.pending h1 {
+  color: #ccc;
+}
+.items .item.rejected,
+.items .detail-card.rejected {
+  border: 1px solid #d9534f;
+}
+.items .item.rejected p,
+.items .detail-card.rejected p,
+.items .item.rejected i,
+.items .detail-card.rejected i,
+.items .item.rejected h5,
+.items .detail-card.rejected h5,
+.items .item.rejected h1,
+.items .detail-card.rejected h1 {
+  color: #a94442;
+}
+a.items .item.rejected p:hover,
+a.items .detail-card.rejected p:hover,
+a.items .item.rejected i:hover,
+a.items .detail-card.rejected i:hover,
+a.items .item.rejected h5:hover,
+a.items .detail-card.rejected h5:hover,
+a.items .item.rejected h1:hover,
+a.items .detail-card.rejected h1:hover,
+a.items .item.rejected p:focus,
+a.items .detail-card.rejected p:focus,
+a.items .item.rejected i:focus,
+a.items .detail-card.rejected i:focus,
+a.items .item.rejected h5:focus,
+a.items .detail-card.rejected h5:focus,
+a.items .item.rejected h1:focus,
+a.items .detail-card.rejected h1:focus {
+  color: #843534;
+}
+.items .item.approved,
+.items .detail-card.approved {
+  border: 1px solid #4cae4c;
+}
+.items .item.approved p,
+.items .detail-card.approved p,
+.items .item.approved i,
+.items .detail-card.approved i,
+.items .item.approved h5,
+.items .detail-card.approved h5,
+.items .item.approved h1,
+.items .detail-card.approved h1 {
+  color: #3c763d;
+}
+a.items .item.approved p:hover,
+a.items .detail-card.approved p:hover,
+a.items .item.approved i:hover,
+a.items .detail-card.approved i:hover,
+a.items .item.approved h5:hover,
+a.items .detail-card.approved h5:hover,
+a.items .item.approved h1:hover,
+a.items .detail-card.approved h1:hover,
+a.items .item.approved p:focus,
+a.items .detail-card.approved p:focus,
+a.items .item.approved i:focus,
+a.items .detail-card.approved i:focus,
+a.items .item.approved h5:focus,
+a.items .detail-card.approved h5:focus,
+a.items .item.approved h1:focus,
+a.items .detail-card.approved h1:focus {
+  color: #2b542c;
+}
+.items .item.running,
+.items .detail-card.running {
+  border: 1px solid #2e6da4;
+}
+.items .item.running p,
+.items .detail-card.running p,
+.items .item.running i,
+.items .detail-card.running i,
+.items .item.running h5,
+.items .detail-card.running h5,
+.items .item.running h1,
+.items .detail-card.running h1 {
+  color: #337ab7;
+}
+a.items .item.running p:hover,
+a.items .detail-card.running p:hover,
+a.items .item.running i:hover,
+a.items .detail-card.running i:hover,
+a.items .item.running h5:hover,
+a.items .detail-card.running h5:hover,
+a.items .item.running h1:hover,
+a.items .detail-card.running h1:hover,
+a.items .item.running p:focus,
+a.items .detail-card.running p:focus,
+a.items .item.running i:focus,
+a.items .detail-card.running i:focus,
+a.items .item.running h5:focus,
+a.items .detail-card.running h5:focus,
+a.items .item.running h1:focus,
+a.items .detail-card.running h1:focus {
+  color: #286090;
+}
+.items .item.warning,
+.items .detail-card.warning {
+  border: 1px solid #f0ad4e;
+}
+.items .item.warning p,
+.items .detail-card.warning p,
+.items .item.warning i,
+.items .detail-card.warning i,
+.items .item.warning h5,
+.items .detail-card.warning h5,
+.items .item.warning h1,
+.items .detail-card.warning h1 {
+  color: #8a6d3b;
+}
+a.items .item.warning p:hover,
+a.items .detail-card.warning p:hover,
+a.items .item.warning i:hover,
+a.items .detail-card.warning i:hover,
+a.items .item.warning h5:hover,
+a.items .detail-card.warning h5:hover,
+a.items .item.warning h1:hover,
+a.items .detail-card.warning h1:hover,
+a.items .item.warning p:focus,
+a.items .detail-card.warning p:focus,
+a.items .item.warning i:focus,
+a.items .detail-card.warning i:focus,
+a.items .item.warning h5:focus,
+a.items .detail-card.warning h5:focus,
+a.items .item.warning h1:focus,
+a.items .detail-card.warning h1:focus {
+  color: #66512c;
+}
 .items .item {
   background: rgba(236, 236, 236, 0.38);
-  margin: 10px;
+  margin: 10px 0px;
   padding: 10px 10px 5px;
   cursor: pointer;
-}
-.items .item button {
-  padding: 7px 21px;
 }
 .items .item .progress {
   margin-bottom: 0px;
   border-radius: 2px;
-}
-.items .item.pending {
-  cursor: default;
-}
-.items .item.pending,
-.items .item.pending .detail-card {
-  border: 1px solid #ccc;
-}
-.items .item.pending p,
-.items .item.pending i,
-.items .item.pending h5,
-.items .item.pending h1 {
-  color: #ccc;
-}
-.items .item.rejected,
-.items .item.rejected .detail-card {
-  border: 1px solid #d9534f;
-}
-.items .item.rejected p,
-.items .item.rejected i,
-.items .item.rejected h5,
-.items .item.rejected h1 {
-  color: #a94442;
-}
-a.items .item.rejected p:hover,
-a.items .item.rejected i:hover,
-a.items .item.rejected h5:hover,
-a.items .item.rejected h1:hover,
-a.items .item.rejected p:focus,
-a.items .item.rejected i:focus,
-a.items .item.rejected h5:focus,
-a.items .item.rejected h1:focus {
-  color: #843534;
-}
-.items .item.approved,
-.items .item.approved .detail-card {
-  border: 1px solid #4cae4c;
-}
-.items .item.approved p,
-.items .item.approved i,
-.items .item.approved h5,
-.items .item.approved h1 {
-  color: #3c763d;
-}
-a.items .item.approved p:hover,
-a.items .item.approved i:hover,
-a.items .item.approved h5:hover,
-a.items .item.approved h1:hover,
-a.items .item.approved p:focus,
-a.items .item.approved i:focus,
-a.items .item.approved h5:focus,
-a.items .item.approved h1:focus {
-  color: #2b542c;
-}
-.items .item.running,
-.items .item.running .detail-card {
-  border: 1px solid #2e6da4;
-}
-.items .item.running p,
-.items .item.running i,
-.items .item.running h5,
-.items .item.running h1 {
-  color: #337ab7;
-}
-a.items .item.running p:hover,
-a.items .item.running i:hover,
-a.items .item.running h5:hover,
-a.items .item.running h1:hover,
-a.items .item.running p:focus,
-a.items .item.running i:focus,
-a.items .item.running h5:focus,
-a.items .item.running h1:focus {
-  color: #286090;
-}
-.items .item.warning,
-.items .item.warning .detail-card {
-  border: 1px solid #f0ad4e;
-}
-.items .item.warning p,
-.items .item.warning i,
-.items .item.warning h5,
-.items .item.warning h1 {
-  color: #8a6d3b;
-}
-a.items .item.warning p:hover,
-a.items .item.warning i:hover,
-a.items .item.warning h5:hover,
-a.items .item.warning h1:hover,
-a.items .item.warning p:focus,
-a.items .item.warning i:focus,
-a.items .item.warning h5:focus,
-a.items .item.warning h1:focus {
-  color: #66512c;
 }
 .items .item i {
   font-size: 22px;
@@ -11560,6 +11612,22 @@ a.items .item.warning h1:focus {
 .items .item .expanded-card .results .message h1 {
   margin-top: 0px;
   font-weight: 300;
+}
+.items .item .expanded-card .results .message .completed div {
+  margin: 0 auto;
+  display: inline-flex;
+}
+.items .item .expanded-card .results .message .completed button {
+  padding: 7px 21px;
+}
+.items .item .expanded-card .results .message .completed p {
+  color: #000;
+}
+.items .item .expanded-card .results .message .completed p span {
+  padding: 0px 20px;
+}
+.items .item .expanded-card .results .message .completed select {
+  width: 38%;
 }
 .items .item .progress-bar {
   transition: width 1s ease-in-out;

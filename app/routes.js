@@ -65,7 +65,7 @@ module.exports = function(app) {
 				status: 'running',
 				overall: 0
 			},
-			firstMessage: 'Wait for tests to get finished'
+			firstMessage: 'Waiting for tests to get finished'
 
 		},
 		'3a2e054c703130a20cdb51f75a5b6409a63606311' : {
@@ -109,16 +109,110 @@ module.exports = function(app) {
 				status: 'passed',
 				overall: 100,
 				testPassed: 120,
-				testFailed: 40,
+				testFailed: 50,
 				codeCovered: 45
 			},
 			firstMessage: 'Change Accepted',
 			secondMessage: 'Auto-Merged'
 		},
-		'4d6e054c703130a20cdb51f75a5b6409a63606311' : {
-			name: '142462',
-			ownerName: 'Federer',
+		'4a2e054c703130a20cdb51f75a5b6409a63606311' : {
+			name: '432462',
+			ownerName: 'Roger',
 			type: 'firewall',
+			time: currentTime.setMinutes(currentTime.getMinutes() - 25),
+			metrics: {
+				status: 'passed',
+				overall: 100,
+				test: {
+					status: 'passed',
+					value: 86
+				},
+				maintainability: {
+					status: 'passed',
+					value: 861
+				},
+				security: {
+					status: 'passed',
+					value: 93
+				},
+				workmanship: {
+					status: 'waiting',
+					value: 56
+				}
+			},
+			build: {
+				status: 'passed',
+				overall: 100
+			},
+			unit: {
+				status: 'failed',
+				overall: 10,
+				testPassed: 10,
+				testFailed: 300,
+				codeCovered: 65
+
+			},
+			functional: {
+				status: 'passed',
+				overall: 100,
+				testPassed: 100,
+				testFailed: 50,
+				codeCovered: 45
+			},
+			firstMessage: 'Change Rejected',
+			secondMessage: 'Unit Test failed'
+		},
+		'5d6e054c703130a20cdb51f75a5b6409a63606311' : {
+			name: '112462',
+			ownerName: 'Federer',
+			type: 'build',
+			time: currentTime.setMinutes(currentTime.getMinutes() - 28),
+			metrics: {
+				status: 'failed',
+				overall: 100,
+				test: {
+					status: 'passed',
+					value: 54
+				},
+				maintainability: {
+					status: 'failed',
+					value: 4
+				},
+				security: {
+					status: 'waiting',
+					value: 19
+				},
+				workmanship: {
+					status: 'passed',
+					value: 76
+				}
+			},
+			build: {
+				status: 'passed',
+				overall: 100
+			},
+			unit: {
+				status: 'passed',
+				overall: 100,
+				testPassed: 510,
+				testFailed: 20,
+				codeCovered: 85
+
+			},
+			functional: {
+				status: 'passed',
+				overall: 100,
+				testPassed: 220,
+				testFailed: 50,
+				codeCovered: 65
+			},
+			firstMessage: 'Change Rejected',
+			secondMessage: 'Metrics reduction'
+		},
+		'6d6e054c703130a20cdb51f75a5b6409a63606311' : {
+			name: '132462',
+			ownerName: 'Federer',
+			type: 'build',
 			completed: true,
 			time: currentTime.setMinutes(currentTime.getMinutes() - 30),
 			metrics: {
@@ -157,7 +251,7 @@ module.exports = function(app) {
 				status: 'passed',
 				overall: 100,
 				testPassed: 220,
-				testFailed: 10,
+				testFailed: 50,
 				codeCovered: 65
 			},
 			secondMessage: 'Completed'
