@@ -12,10 +12,11 @@ describe("ItemController", function() {
     beforeEach(inject(function($controller) {
     }));
 
-    it("should reject the build because of fails", function() {
+    it("should reject the firewall because of fails", function() {
       expect(
         scope.getItemStatus({
           status: false,
+          type: 'firewall',
           metrics: {
             status: 'failed'
           },
@@ -32,11 +33,34 @@ describe("ItemController", function() {
       ).toEqual('rejected');
     });
 
-    it("should say the build is approved", function() {
+    it("should reject the build because of fails", function() {
+      expect(
+        scope.getItemStatus({
+          status: false,
+          type: 'build',
+          metrics: {
+            status: 'failed'
+          },
+          build: {
+            status: 'failed'
+          },
+          unit: {
+            status: 'failed'
+          },
+          functional: {
+            status: 'failed'
+          }
+        })
+      ).toEqual('failed');
+    });
+
+
+    it("should say the firewall is approved", function() {
       expect(
         scope.getItemStatus({
           status: false,
           completed: false,
+          type: 'firewall',
           metrics: {
             status: 'passed'
           },
@@ -53,11 +77,34 @@ describe("ItemController", function() {
       ).toEqual('approved');
     });
 
+    it("should say the build is succeeded", function() {
+      expect(
+        scope.getItemStatus({
+          status: false,
+          completed: false,
+          type: 'build',
+          metrics: {
+            status: 'passed'
+          },
+          build: {
+            status: 'passed'
+          },
+          unit: {
+            status: 'passed'
+          },
+          functional: {
+            status: 'passed'
+          }
+        })
+      ).toEqual('succeeded');
+    });
+
     it("should say the build is completed", function() {
       expect(
         scope.getItemStatus({
           status: false,
           completed: true,
+          type: 'build',
           metrics: {
             status: 'passed'
           },

@@ -71,7 +71,7 @@ module.exports = function(app) {
 		'3a2e054c703130a20cdb51f75a5b6409a63606311' : {
 			name: '136462',
 			ownerName: 'Selimovic',
-			type: 'firewall',
+			type: 'build',
 			time: currentTime.setMinutes(currentTime.getMinutes() - 20),
 			metrics: {
 				status: 'passed',

@@ -48,10 +48,18 @@ App.controller('ItemController', [
 	                if(item.completed){
 	                    return 'completed';
 	                }else{
-	                    return 'approved';
+	                	if(item.type == 'build'){
+	                    	return 'succeeded';
+	                	}else{
+	                		return 'approved';
+	                	}
 	                }
 	            }else{
-	                return 'rejected';
+	            	if(item.type == 'build'){
+	            		return 'failed';
+	            	}else{
+	            		return 'rejected';
+	            	}
 	            }
 	        }
             return item.status;
